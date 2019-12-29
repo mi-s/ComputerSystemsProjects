@@ -1,0 +1,15 @@
+michaelsu exam2 grade: 90/100
+
+  Question 1: 35 / 40
+  Question 2: 10 / 10
+  Question 3: 7 / 10
+  Question 4: 9 / 10
+  Question 5: 10 / 10
+  Question 6: 9 / 10
+  Question 7: 5 / 5
+  Question 8: 5 / 5
+
+Questions were graded by TAs and professors. If you believe a question
+was graded incorrectly, post a private note in the "exam2" Piazza
+folder to identify the question number, and the grading error.
+

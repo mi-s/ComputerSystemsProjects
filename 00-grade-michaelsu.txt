@@ -1,4 +1,4 @@
-michaelsu cs154 grade: 55.675 (normalized: 90.455 )
+michaelsu cs154 grade: 91.246 (normalized: 91.246 )
 
 Homeworks:
        hw1 (2.75%):     19/22 == 2.3749
@@ -8,22 +8,29 @@ Homeworks:
        hw5 (2.75%):     20/20 == 2.7500
        hw6 (2.75%):     30/31 == 2.6612
        hw7 (2.75%):     20/20 == 2.7500
+       hw8 (2.75%):     40/40 == 2.7500
+       hw9 (2.75%):     49/49 == 2.7500
                      -------------------
-    hw avg (19.25%):           == 17.338
+                 raw hw sum   == 22.838
+        (dropping lowest: hw2 == 1.8602)
+    hw avg   (22%):           == 20.978
 
 Projects:
 p1bitmanip  (6.6%):   103/103 == 6.6000
     p2bomb  (6.6%):     60/60 == 6.6000
    p3cache  (6.6%):  97.9/100 == 6.4614
+   p4shell  (6.6%):   100/100 == 6.6000
+  p5malloc  (6.6%):    77/100 == 5.0820
 
 Exams:
      exam1 (22.5%):    83/100 == 18.675
+     exam2 (22.5%):    90/100 == 20.250
 
-(Current weighted score, based on 61.55% of assignments)
-   OVERALL (61.55%):           == 55.675
+(Current weighted score, based on 100.0% of assignments)
+   OVERALL (100.0%):           == 91.246
 
-(Current normalized score, 100/61.55 * currentOverall)
-NORMALIZED  (100%):           == 90.455
+(Current normalized score, 100/100.0 * currentOverall)
+NORMALIZED  (100%):           == 91.246
 
 
 

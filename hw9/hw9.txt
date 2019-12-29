@@ -1,0 +1,34 @@
+(1)
+A.
+50 * 100 = 5000 Bytes
+The file descriptor structure (50 bytes) associated with connfd
+was allocated but not freed by 100 clients.
+
+B.
+0 Bytes
+
+The operating system automatically reclaims the memory of the 
+active file descriptors after the child processes are closed.
+
+(2)
+Format:
+(Variable Instance), (Ref by main thread?), (Ref by peer thread 0?), (Ref by peer thread 1?)
+
+cnt.t0,  No, Yes, No
+cnt.t1,  No, No, Yes
+i.m,     Yes, Yes, Yes
+msgs.m,  Yes, Yes, Yes
+myid.t0, No, Yes, No
+myid.t1, No, No, Yes
+
+(3)
+A.
+T1- (a,b), (a,c), (b,c), (a,d)
+T2- (d,c), (d,b), (c,b)
+
+B.
+Yes, they both can hold pair (b,c).
+No, they are not locked in the same order between threads.
+
+C.
+Yes, if t1 locks b and t2 locks c simultaneously, there is deadlock.

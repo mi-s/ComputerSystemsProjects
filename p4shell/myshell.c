@@ -5,6 +5,8 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 int hasBatch = 0;
 FILE* batch = NULL;
@@ -30,12 +32,12 @@ void error(char kill){
 void lenError(){
     char extraInput;
     if(hasBatch){
-        while((extraInput = getc(batch)) != '\n'){
+        while(((extraInput = getc(batch)) != '\n') && (extraInput != '\0')){
             write(STDOUT_FILENO, &extraInput, 1);
         }
     }
     else{ 
-        while((extraInput = getc(stdin)) != '\n'){
+        while(((extraInput = getc(stdin)) != '\n') && (extraInput != '\0')){
             write(STDOUT_FILENO, &extraInput, 1);
         }
     }
@@ -46,10 +48,11 @@ void lenError(){
 /* checkEmpty: returns 1 for strings that have any character other than a 
  * space, tab, or arrow */
 int checkEmpty(char* input){
+    if(input == NULL) {return 0;}
     int i = 0;
     char c = input[i];
-    while(c != '\n'){
-        if((c != ' ') && (c != '\t')) {return 1;}
+    while(c != '\0'){
+        if((c != ' ') && (c != '\t') && (c != '\n')) {return 1;}
         i++;
         c = input[i];
     }
@@ -62,7 +65,7 @@ int checkRedirect(char* input){
     int arrow = 0, arrowpl = 0;
     int i = 0;
     char c = input[i];
-    while(c != '\n'){
+    while(c != '\0'){
         if(c == '>') {
 	    char next = input[i + 1];
 	    if(next == '+'){
@@ -105,24 +108,59 @@ void pwdCmd(){
     }
 }
 
+void prepend(int outputfd, int tempfd){
+    char byte;
+    while(read(outputfd, &byte, 1)) {write(tempfd, &byte, 1);}
+    lseek(tempfd, 0, SEEK_SET);
+    ftruncate(outputfd, 0);
+    while(read(tempfd, &byte, 1)) {write(outputfd, &byte, 1);}
+    remove("tmp");
+}
+
 // execCmd: handles non-built-in functions and their potential redirection
 void execCmd(char* arg, char* arg2, char** saveptr, char* outputpath, int redirect){
     int cid = fork();
-    if(cid) {wait(NULL);}
+    if(cid) {
+        wait(NULL);
+        if((redirect == 2) && (!(access("tmp", F_OK)))){
+            char* pathptr;
+            char* path = strtok_r(outputpath, " \t", &pathptr);
+            if(path != NULL){
+                if(strtok_r(NULL, " \t", &pathptr) != NULL) {error(0);}
+                else{
+                    int outputfd = open(path, O_RDWR | O_APPEND);
+                    int tempfd = open("tmp", O_RDWR | O_APPEND);
+                    prepend(outputfd, tempfd);
+                    close(outputfd);
+                    close(tempfd);
+                }
+            } else{
+                error(0);
+            }
+        }
+    }
     else{
 	int outputfd = -1;
         if(redirect){
 	    char* pathptr;
 	    char* path = strtok_r(outputpath, " \t", &pathptr);
+            int tempfd = -1;
 	    if(strtok_r(NULL, " \t", &pathptr) != NULL) {error(1);}
 	    if(redirect == 2) {
-	        outputfd = open(path, O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
+	        outputfd = open(path, O_RDWR | O_CREAT, S_IRWXU);
+                tempfd = open("tmp", O_RDWR | O_CREAT, S_IRWXU);
 	    } else{
-                remove(path);
-		outputfd = open(path, O_WRONLY | O_TRUNC | O_CREAT, S_IRWXU);
+		outputfd = open(path, O_WRONLY | O_CREAT | O_EXCL, S_IRWXU);
 	    }
-	    if(outputfd == -1) {error(1);}
-	    dup2(outputfd, STDOUT_FILENO);
+	    if(outputfd == -1) {
+                if(!(access("tmp", F_OK))) {
+                    remove("tmp");
+                    close(tempfd);
+                }
+                error(1);
+            }
+            if(tempfd != -1) {dup2(tempfd, STDOUT_FILENO);}
+	    else {dup2(outputfd, STDOUT_FILENO);}
 	}
 	char* argv[256];
 	argv[0] = arg;
@@ -137,7 +175,6 @@ void execCmd(char* arg, char* arg2, char** saveptr, char* outputpath, int redire
 	argv[i] = NULL;
 	int err = execvp(argv[0], argv);
 	if(err == -1) {error(1);}
-	if(outputfd != -1) {close(outputfd);}
 	exit(0);
     }
 }
@@ -168,17 +205,28 @@ void lineHandler(char* input){
     char* cmd = strtok_r(input, ";\n", &saveptr);
     while(cmd != NULL){
         int redirect = checkRedirect(cmd);
-        if(redirect == 3) {error(0);}
+        if(redirect == 3) {
+            error(0);
+            cmd = strtok_r(NULL, ";\n", &saveptr);
+            continue;
+        }
         char* job;
 	char* outputpath;
         if(redirect){
 	    char* saveptr2;
             job = strtok_r(cmd, ">", &saveptr2);
 	    outputpath = strtok_r(NULL, ">", &saveptr2);
-	    if(redirect == 2) {outputpath++;} //remove '+' symbol
+            if((redirect == 2) && (outputpath != NULL)) {outputpath++;}
+            int emptyJob = !(checkEmpty(job));
+            int emptyPath = !(checkEmpty(outputpath));
+            if(emptyJob | emptyPath | (outputpath == NULL)){
+                error(0);
+                cmd = strtok_r(NULL, ";\n", &saveptr);
+                continue;
+            }
         } else {job = cmd;}
-	argHandler(job, outputpath, redirect);
-	cmd = strtok_r(NULL, ";\n", &saveptr);
+        argHandler(job, outputpath, redirect);
+        cmd = strtok_r(NULL, ";\n", &saveptr);
     }
 }
 
