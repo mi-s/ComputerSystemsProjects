@@ -1,0 +1,7 @@
+michaelsu p2bomb grade: 60/60
+bomb33 michaelsu Sun Oct 20 21:23 valid
+    Defused:   6
+    Explosion: 1
+    Score:     60
+
+###### bomb33 created: Mon Oct 14 18:14:26 2019 ######

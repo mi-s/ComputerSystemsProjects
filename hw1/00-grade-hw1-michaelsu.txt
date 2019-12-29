@@ -1,0 +1,24 @@
+michaelsu hw1 grade: 19/22
+
+Graded files from svn revision 24
+
+--------------------------------------
+Question 1 points and comments: 8/10
+
+-1: forgot to flip using !, please recheck question.
+-1: problems with explanation - when describing how numbers are stored,
+ 'right-most' and 'left-most' byte are not accurate as bytes are not internally
+ stored in any left-right order. All that matters is the number of the address.
+
+Graded by: Hanson Lu (hansonlu)
+--------------------------------------
+
+Question 2 points and comments: 11/12
+
+For parts C and E, your shift computation is just one off.
+
+Graded by: Rose Pierce (rosepierce)
+--------------------------------------
+
+If you believe there is an error in how you were graded, you have a week,
+starting from when this grade was returned, to notify us via email.

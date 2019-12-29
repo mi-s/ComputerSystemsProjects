@@ -1,0 +1,39 @@
+(1) 
+foo = 1;
+endian = *((unsigned char *)&foo;
+
+On big-endian machines, foo stores 1 in the right-most byte, while little-endian machines store it in
+the left-most byte.  Endian is equal to the value of the right-most byte of foo, so it equals 1 on 
+big-endian machines and 0 on little-endian machines.
+
+(2)
+int problemA (int x) {
+  return !!(~x);
+}
+
+int problemB (int x) {
+  return !!x;
+}
+
+int problemC (int x) {
+  int shift = (sizeof(int) << 3) - 5;
+  int msn = 0xF << shift;
+  int x_msn = x & msn;
+  return !!(x_msn ^ msn);
+}    
+
+int problemD (int x) {
+  return !!(x & 0xF);
+}
+
+int problemE (int x) {
+  int shift = (sizeof(int) << 3) - 9;
+  int msb = 0xFF << shift;
+  int x_msb = x & msb;
+  int x_lsb = (x << shift) & msb;
+  return !(x_msb ^ x_lsb);
+}
+
+int problemF (int x) {
+  return !!(x & 0x55555555);
+}

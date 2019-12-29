@@ -1,0 +1,19 @@
+(1)
+A. Yes. Addresses 0-2 will be loaded with P1.
+B. Yes. Addresses 6-8 will be loaded with P2;
+C. No, P3 cannot be loaded.  There is no contiguous span of 3MB available in the memory.
+D. P1: 2MB
+   P2: 1MB
+   P3: None, because P3 was not loaded.  If it were loaded, there would be 0MB of internal fragmentation.
+   There is 3MB total of internal fragmentation.
+E. There is 3MB of external fragmentation.  Addresses 3,4, and 9 cannot be used because they do not
+   belong to contiguous spans of >= 3MB.
+
+(2)
+A.
+r 0xF4 = 1 | 1110100 ; 0x13 + 0x74 = 0x87 S
+w 0x38 = 0 | 0111000 ; 0x9A + 0x38 = 0xD2 E
+r 0x12 = 0 | 0010010 ; 0x9A + 0x12 = 0xAC S
+
+B.
+2^7 bytes

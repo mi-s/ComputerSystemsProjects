@@ -1,0 +1,33 @@
+(1)
+A. (%rcx) = M[0x220] =
+   0x09, Indirect
+
+B. 0x14(%rax) = M[0x14 + R(%rax)] = M[0x14 + 0x220] = 0x224
+   Unknown, The effective address is 0x224 which is between addresses that store 32-bit values.
+
+C. 560 = M[0x230] =
+   0x54, Absolute
+
+D. (%rax,%rsi) = M[R(%rax) + R(%rsi)] = M[0x210 + 0x8] = M[0x218] =
+   0xBC, Indexed
+
+E. 0x108(%rdi,%rdx,0x20) = M[0x108 + 0x100 + 0x1 * 32] = M[0x208 + 0x20] = M[0x228] =
+   0x42, Scaled indexed
+
+F. $251 =
+   0xFB, Immediate
+
+G. (, %rsi, 0x45) = M[0x8 * 69] = M[0x228] = 
+   0x42, Scaled indexed
+
+(2)
+A. %rsi, 0x9
+B. %rbx, 0x0
+C. 0x210, 0xAA
+D. 0x220, 0x120
+E. %rdx, 0xFFFFFFFE
+F. %rsi, 0x1000
+G. Unknown, destination is an immediate
+H. %rdi, 0xBC00
+I. 0x220, 0x219
+J. Unknown, shifting right by 0x42 causes undefined behavior

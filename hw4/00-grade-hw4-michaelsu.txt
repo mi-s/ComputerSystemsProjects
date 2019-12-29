@@ -1,0 +1,33 @@
+michaelsu hw4 grade: 49/55
+
+Graded files from svn revision 55
+
+--------------------------------------
+Question 1 points and comments: 18/20
+
+-1 The 4th row of the table should yield a value of 0x03 instead of 0xFF. Note that the
+block offset is 2, not 3.
+
+-1 in the last row of the table, we actually know the value at 0xFFE, which is 03,
+as shown in the 4th row. That value is reloaded into the cache, after eviction.
+
+Graded by: Hanson Lu (hansonlu)
+--------------------------------------
+
+Question 2 points and comments: 18/20
+
+-2 E: It is cold misses, not conflict misses that are at play here.
+
+Graded by: Henry Filosa (hfilosa)
+--------------------------------------
+
+Question 3 points and comments: 13/15
+
+Good job! You just had a small mistake in calculating the value in part B, which should come out to
+be 17.63 which rounds to 18 rather than 22 cycles.
+
+Graded by: Rose Pierce (rosepierce)
+--------------------------------------
+
+If you believe there is an error in how you were graded, you have a week,
+starting from when this grade was returned, to notify us via email.

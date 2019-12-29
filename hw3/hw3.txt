@@ -1,0 +1,47 @@
+(1)
+long funcQ(long x, long y)
+{
+  return (3 * y) + x;
+}
+
+long funcP(long r, long s, long t)
+{
+  if(s <= 0){
+    return t + funcQ(s, r);
+  }
+  return r + funcQ(t, s);
+}
+
+(2)
+long loop(long x, long n) {
+  long result = 0;
+  long mask;
+  for (mask = 3; mask != 0; mask = mask << n) {
+    result = (x & mask) | result;
+  }
+  return result;
+}
+
+1: 0
+2: 3
+3: != 0
+4: mask << n
+5: (x & mask) | result
+
+(3)
+A.
+&(A[i][j][k]) = xa + L((i * S * T) + (j * T) + k)
+
+B. 
+R = 16
+S = 10
+T = 9
+
+In line 4, %r8 stores 9 * j. 
+In line 5, %rax stores 90i.
+In line 7, k is added to %rax.
+In line 9, %rax is set to *dest.
+In line 10, (%rax) = xa + 4(90i + 9j + k)
+Using my formula from A., T = 9. 
+9i * S = 90i, so S = 10.
+The size of the array is 1440 from .comm, so R is found by 1440/(10 * 9) = 16.

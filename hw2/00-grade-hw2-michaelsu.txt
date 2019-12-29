@@ -1,0 +1,32 @@
+michaelsu hw2 grade: 23/34
+
+Graded files from svn revision 41
+
+--------------------------------------
+Question 1 points and comments: 13/14
+
+Good job! For part B, you just needed to specify that the reason you can't know the value is because
+you don't know the endianness.
+
+Graded by: Rose Pierce (rosepierce)
+--------------------------------------
+
+Question 2 points and comments: 10/20
+
+-1 D: Destination is %rdi
+-1 F: Destination is 0x220
+-1 G: Destination is %rcx
+-1 H: Destination is 0x218
+-1 I: Destination is %rax
+-1 J: Destination is 0x228
+
+-1 D: Value is 0xF7 (that’s absolute addressing mode, not an immediate)
+-1 F: Value is 0x900
+-1 G: Value is 0x120
+-1 J: Value is 0x21
+
+Graded by: Henry Filosa (hfilosa)
+--------------------------------------
+
+If you believe there is an error in how you were graded, you have a week,
+starting from when this grade was returned, to notify us via email.

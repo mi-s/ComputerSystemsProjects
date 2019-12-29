@@ -1,0 +1,11 @@
+michaelsu exam1 grade: 83/100
+
+  Question 1: 16 / 16
+  Question 2: 11 / 14
+  Question 3: 19 / 22
+  Question 4: 18 / 24
+  Question 5: 19 / 24
+
+Questions were graded by TAs and professors. If you believe a question
+was graded incorrectly, please drop by the exam office hour.
+

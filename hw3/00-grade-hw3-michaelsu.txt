@@ -1,0 +1,27 @@
+michaelsu hw3 grade: 29/32
+
+Graded files from svn revision 47
+
+--------------------------------------
+Question 1 points and comments: 10/10
+
+Graded by: Henry Filosa (hfilosa)
+--------------------------------------
+
+Question 2 points and comments: 10/12
+
+You should have also answered parts A-E, even if the answers for B-E are also included in filling
+in part F.
+
+Graded by: Rose Pierce (rosepierce)
+--------------------------------------
+
+Question 3 points and comments: 9/10
+
+-1: in part B, R should be 4. Remember sizeof(int)*R*S*T = 1440.
+
+Graded by: Hanson Lu (hansonlu)
+--------------------------------------
+
+If you believe there is an error in how you were graded, you have a week,
+starting from when this grade was returned, to notify us via email.

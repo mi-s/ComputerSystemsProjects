@@ -1,0 +1,69 @@
+A.
+#|P/C|Line#|Forkret
+1| P | 16  | 0
+2| P | 23  | 101
+3| C | 19  | 0
+4| P | 8   | 101
+5| C | 8   | 0
+6| C | 10  | 0
+7| P | 26  | 101
+
+B.
+#|P/C|Line#|Forkret
+1| P | 16  | 0     
+2| P | 23  | 101   
+3| C | 19  | 0     
+4| C | 8   | 0     
+5| C | 10  | 0     
+6| P | 26  | 101   
+
+The kill functions in lines 20 and 24 are in a race with each other.  
+The parent runs line 24 and the child runs line 20.
+
+In part A, the child kill function runs first, printing "(100) handler1". Then, the 
+parent kill function runs, which prints "(101) handler1" and then kills the
+child process.
+
+In part B, the parent kill function runs first, printing "(101) handler1" 
+and then killing the child process.  The child kill function does not do anything
+in part B because the process was terminated before the function could be run.
+
+C.
+#|P/C|Line#|Forkret
+1| P | 16  | 0
+2| P | 23  | 101
+3| C | 8   | 0
+4| C | 10  | 0
+5| P | 26  | 101
+
+The race here is begun at line 18 at fork().  In this case, the parent won the race
+to execute before the child.
+
+In Part B, the child process executes line 19 before it loses the race to run the kill
+function and is killed by the parent.
+
+In Part C, the child process, created after fork(), has not even begun any steps in the
+if-statement before the parent process runs its kill function to kill the child.  Thus,
+the child produces no output outside of the handler.
+
+D.
+#|P/C|Line#|Forkret
+1| P | 16  | 0
+2| C | 19  | 0
+3| P | 8   | 0
+4| P | 10  | 0
+
+Like Part C, the race here is begun at line 18 at fork().  In this case, the child
+won the race to execute before the parent.  The parent does not even modify its
+forkret value before the child begins executing, which is why the handler is able
+to terminate the parent.
+
+In Part C, the parent kills the child process after fork() without the child process ever
+performing any steps in the if-statement.  Then, the parent prints "(parent) child done"
+before exiting normally.
+
+In Part D, the roles are reversed, and the child process has priority over the parent after
+fork().  The child process performs the steps up to its kill function, which kills the
+parent process.  The parent process has no output after fork outside of the
+handler because it was terminated by the child process kill function.  This is a bad scenario,
+because the child process will continue running due to line 21.

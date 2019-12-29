@@ -1,0 +1,35 @@
+michaelsu cs154 grade: 55.675 (normalized: 90.455 )
+
+Homeworks:
+       hw1 (2.75%):     19/22 == 2.3749
+       hw2 (2.75%):     23/34 == 1.8602
+       hw3 (2.75%):     29/32 == 2.4921
+       hw4 (2.75%):     49/55 == 2.4499
+       hw5 (2.75%):     20/20 == 2.7500
+       hw6 (2.75%):     30/31 == 2.6612
+       hw7 (2.75%):     20/20 == 2.7500
+                     -------------------
+    hw avg (19.25%):           == 17.338
+
+Projects:
+p1bitmanip  (6.6%):   103/103 == 6.6000
+    p2bomb  (6.6%):     60/60 == 6.6000
+   p3cache  (6.6%):  97.9/100 == 6.4614
+
+Exams:
+     exam1 (22.5%):    83/100 == 18.675
+
+(Current weighted score, based on 61.55% of assignments)
+   OVERALL (61.55%):           == 55.675
+
+(Current normalized score, 100/61.55 * currentOverall)
+NORMALIZED  (100%):           == 90.455
+
+
+
+
+The OVERALL score is the total score you've earned.  The NORMALIZED
+score is the score as if the quarter ends today (normalized to 100%
+work done). At the end of the quarter, the OVERALL score will be the
+same as the NORMALIZED score.
+

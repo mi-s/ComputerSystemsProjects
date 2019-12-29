@@ -1,0 +1,30 @@
+(1)
+A.
+All system calls require the "syscall" instruction to be executed by user programs.  System calls also run in
+kernel mode, which has more privileges than user mode, which is what library functions run in.
+
+B.
+Name   | Sys/Lib | Description
+------------------------------------
+accept | System  | Extracts a connection and connects it to the listening socket
+fork   | System  | Duplicates the calling process, creating a child process in separate memory space
+dup2   | System  | Duplicates a file descriptor and assigns duplicate a specified descriptor number
+read   | System  | Reads a specified number of bytes from a file into a buffer
+log    | Library | Returns the natural logarithm of a double
+exit   | Library | Terminates the current process and returns status info to parent process
+fread  | Library | Reads data from a data stream and stores in memory location
+pause  | Library | Pauses the calling process until a signal triggers the process to continue or exit
+
+(2)
+A.
+Exception # | Exception Handler Address
+0           | 0xC0015200
+
+B.
+1. The CPU's ALU circuit begins executing the division instruction "idivl %ebx".
+2. If %ebx equals zero, which it does, the ALU circuit fetches exception 0.
+3. The CPU uses the exception table base register to locate the exception table.  
+   Then, it locates entry 0, which is the first entry in the table.
+4. The current %eip value, 0x08031000, is pushed to the stack as a return address.  
+5. The CPU sets %eip to entry 0's content, which is the memory address 0xC0015200.
+6. The CPU executes the first instruction stored at 0xC0015200.
