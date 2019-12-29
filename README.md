@@ -1,5 +1,5 @@
 # ComputerSystemsProjects
-5 projects from my Introduction to Computer Systems class
+5 projects from my Introduction to Computer Systems class + extra assignments
 
 P1-bitmanip
 A project where I solved bit manipulation problems.
